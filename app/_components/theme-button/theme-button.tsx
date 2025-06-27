@@ -8,7 +8,7 @@ export default function ThemeButton() {
   return (
     <button
       onClick={toggleTheme}
-      className="inline-flex items-center rounded-lg border border-gray-900 border-white bg-transparent px-4 py-2 text-sm font-medium text-white hover:bg-gray-900 hover:text-white focus:z-10 focus:bg-gray-700 focus:text-white focus:ring-2 focus:ring-gray-500 dark:text-gray-900 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white">
+      className="inline-flex items-center rounded-lg border border-gray-900 border-white bg-transparent px-4 py-2 text-sm font-medium text-white hover:bg-gray-900 hover:text-white focus:z-10 focus:bg-gray-700 focus:text-white focus:ring-2 focus:ring-gray-500 dark:hover:bg-gray-700 dark:hover:text-white">
 
       {isDarkMode ? (
         <>

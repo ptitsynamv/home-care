@@ -1,5 +1,3 @@
-
-
 import Header from "@/app/_components/layout/header";
 
 export default function Layout({

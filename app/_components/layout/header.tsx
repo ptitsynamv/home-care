@@ -1,21 +1,27 @@
 "use client";
 
-
 import useOpenClose from "@/app/_components/hooks/useOpenClose";
 import ThemeButton from "@/app/_components/theme-button/theme-button";
+import { handleSignIn, handleSignOut } from "@/app/_lib/auth";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function Header() {
   const { isOpen, toggle } = useOpenClose();
+  const { data: session } = useSession();
 
   return (
     <header className="bg-gray-800 text-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-        <div className="flex lg:flex-1">
+        <div className="flex lg:flex-1 items-center space-x-4">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Home Care</span>
             <img className="h-8 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="" />
           </Link>
+          {session && (<h2 className="text-sm/6 font-semibold p-1.5">
+            Welcome, {session.user?.name}!
+          </h2>
+          )}
         </div>
         <div className="flex lg:hidden">
           <button type="button" className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white" onClick={toggle}>
@@ -26,18 +32,31 @@ export default function Header() {
           </button>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
-          <div className="relative">
-            <Link className="flex items-center gap-x-1 text-sm/6 font-semibold " href="/">Home</Link>
-          </div>
+          <Link className="flex items-center gap-x-1 text-sm/6 font-semibold " href="/">Home</Link>
           <Link className="flex items-center gap-x-1 text-sm/6 font-semibold " href="/about">About</Link>
           <Link className="flex items-center gap-x-1 text-sm/6 font-semibold " href="/blog">Blog</Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center space-x-4">
           <ThemeButton />
-          <a href="#" className="text-sm/6 font-semibold ">Log in <span aria-hidden="true">&rarr;</span></a>
+
+          {session ? (
+            <button
+              onClick={handleSignOut}
+              className="text-sm/6 font-semibold"
+              type="button"
+            >
+              Log out
+            </button>
+          ) : (
+            <button
+              onClick={handleSignIn}
+              className="text-sm/6 font-semibold"
+              type="button"
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </button>
+          )}
         </div>
-
-
       </nav>
 
       {/* <!-- Mobile menu, show/hide based on menu open state. --> */}
@@ -46,10 +65,16 @@ export default function Header() {
         <div className="fixed inset-0 z-50"></div>
         <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-800 text-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
+            <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
               <img className="h-8 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="" />
-            </a>
+            </Link>
+
+            {session && (<h2 className="text-sm/6 font-semibold">
+              Welcome, {session.user?.name}!
+            </h2>
+            )}
+
             <button type="button" className="-m-2.5 rounded-md p-2.5 text-white" onClick={toggle}>
               <span className="sr-only">Close menu</span>
               <svg className="size-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
@@ -68,7 +93,24 @@ export default function Header() {
                 <ThemeButton />
               </div>
               <div className="py-6">
-                <a href="#" className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  hover:bg-gray-50">Log in</a>
+                {session ? (
+                  <button
+                    onClick={handleSignOut}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  hover:bg-gray-700"
+                    type="button"
+                  >
+                    Log out
+                  </button>
+                ) : (
+                  <button
+                    onClick={handleSignIn}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold  hover:bg-gray-700"
+                    type="button"
+                  >
+                    Log in
+                  </button>
+                )}
+
               </div>
             </div>
           </div>

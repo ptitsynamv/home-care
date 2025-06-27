@@ -1,6 +1,7 @@
 # Home Care
 
 Use npm v10.9.2, Node.js v22.15.1
+Add .env.local at the root of project folder (env.local.example)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 

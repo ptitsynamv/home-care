@@ -1,3 +1,4 @@
+import { Providers } from "@/app/providers";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
@@ -21,17 +22,16 @@ export const metadata: Metadata = {
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en" className={inter.className}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white`}
       >
-
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
