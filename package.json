@@ -12,7 +12,8 @@
     "next": "15.3.4",
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "msw": "^2.10.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -24,5 +25,10 @@
     "eslint-config-next": "15.3.4",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
