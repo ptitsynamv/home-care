@@ -2,7 +2,7 @@
 
 import Header from "@/app/_components/layout/header";
 
-if (process.env.NODE_ENV === 'development') {
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
   const { worker } = await import('../mocks/browser')
   await worker.start({ onUnhandledRequest: 'bypass' })
 }
@@ -15,7 +15,7 @@ export default function Layout({
   return (
     <>
       <Header />
-      <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center p-8 pb-20 sm:p-20 font-[family-name:var(--font-geist-sans)]">
         <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
           {children}
         </main>

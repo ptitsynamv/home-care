@@ -15,8 +15,8 @@ export default function Header() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div className="flex lg:flex-1 items-center space-x-4">
           <Link href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Home Care</span>
-            <img className="h-8 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+            <span className="sr-only">Home Care 1</span>
+            <img className="h-8 w-auto" src="/logo.png" alt="logo" />
           </Link>
           {session && (<h2 className="text-sm/6 font-semibold p-1.5">
             Welcome, {session.user?.name}!
