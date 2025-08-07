@@ -1,8 +1,16 @@
+import { shopifyFetch } from "@/app/_lib/shopify";
 
-export default function Home() {
+export default async function Home() {
+  const query = `query { hello }`;
+
+  const data = await shopifyFetch({ query });
+
+  console.log({ data })
+
+
   return (
-    <>
-      <p>Here home</p>
-    </>
+    <div>
+      <h1>Here home</h1>
+    </div>
   );
 }
