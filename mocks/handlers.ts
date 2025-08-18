@@ -1,5 +1,6 @@
 import { BlogPost } from '@/app/_lib/blog';
 import { config } from '@/app/_lib/config';
+import { Plan } from '@/app/_lib/home';
 import { http, HttpResponse } from 'msw';
 
 const API_URL = config.apiUrl;
@@ -33,5 +34,52 @@ export const handlers = [
       },
     ];
     return HttpResponse.json({ posts });
+  }),
+  http.get(API_URL + 'plan', () => {
+    const plans: Plan[] = [
+      {
+        id: '1',
+        title: 'Essential Renovation (Budget-Friendly)',
+        description: 'Perfect for small updates and quick refreshes.',
+        price: 100,
+        features: [
+          'Wallpapering & painting',
+          'Laminate flooring installation',
+          'Basic tiling (bathroom/kitchen splash zones)',
+          'Minor electrical & plumbing adjustments',
+          'Clean, durable finish',
+        ],
+      },
+      {
+        id: '2',
+        title: 'Complete Renovation (Most Popular)',
+        description:
+          'A full-service package for major room updates. Includes everything in Essential, plus',
+        price: 200,
+        features: [
+          'Full bathroom or kitchen renovation (plumbing, tiling, fixtures)',
+          'Stretch ceiling installation',
+          'Custom cabinetry for storage optimization',
+          'Electrical system upgrades (lighting, outlets)',
+          'Detailed project management with clear timelines',
+        ],
+      },
+      {
+        id: '3',
+        title: 'Premium Renovation (Luxury & Custom Design)',
+        description:
+          'Tailored for full-home remodels and high-end finishes. Includes everything in Complete, plus:',
+        price: 300,
+        features: [
+          'Entire home renovation from scratch',
+          'Custom kitchen design & installation',
+          'Built-in wardrobes and cabinets (made-to-measure)',
+          'Advanced electrical & smart-home solutions',
+          'Premium materials & finishes (tiles, flooring, décor)',
+          'Personal design consultation and style matching',
+        ],
+      },
+    ];
+    return HttpResponse.json({ plans });
   }),
 ];
