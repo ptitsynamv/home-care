@@ -8,11 +8,6 @@ const API_URL = config.apiUrl;
 
 
 export default function Home() {
-  // const query = `query { hello }`;
-
-  // const data = await shopifyFetch({ query });
-  // console.log({ data })
-
   const [plans, setPosts] = useState<Plan[]>();
 
   useEffect(() => {

@@ -35,6 +35,7 @@ export default function Header() {
           <Link className="flex items-center gap-x-1 text-sm/6 font-semibold " href="/">Home</Link>
           <Link className="flex items-center gap-x-1 text-sm/6 font-semibold " href="/about">About</Link>
           <Link className="flex items-center gap-x-1 text-sm/6 font-semibold " href="/blog">Blog</Link>
+          <Link className="flex items-center gap-x-1 text-sm/6 font-semibold " href="/shopify">Shopify</Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center space-x-4">
           <ThemeButton />
