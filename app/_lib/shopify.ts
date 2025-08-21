@@ -6,7 +6,7 @@ export async function shopifyFetch<T>({
   variables = {},
 }: {
   query: string;
-  variables?: { first?: number; query?: string };
+  variables?: { first?: number; query?: string; slug?: string };
 }): Promise<T> {
   const res = await fetch(domain, {
     method: 'POST',

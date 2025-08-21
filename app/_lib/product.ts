@@ -8,7 +8,7 @@ export interface Product {
     edges: { node: { altText: string; height: number; originalSrc: string; width: number } }[];
     pageInfo: PageInfo;
   };
-  priceRange: { minVariantPrice: { amount: string; currencyCode: string } };
+  priceRange: PriceRange;
 }
 
 export interface PageInfo {
@@ -21,4 +21,18 @@ export interface ProductsResponse {
     edges: { node: Product }[];
     pageInfo: PageInfo;
   };
+}
+
+export interface ProductByHandleResponse {
+  productByHandle: ProductInfo;
+}
+
+export interface ProductInfo extends Product {
+  descriptionHtml: string;
+  options: { id: string; name: string; values: string[] }[];
+}
+
+export interface PriceRange {
+  minVariantPrice: { amount: string; currencyCode: string };
+  maxVariantPrice?: { amount: string; currencyCode: string };
 }
