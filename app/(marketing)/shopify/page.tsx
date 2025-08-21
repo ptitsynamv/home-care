@@ -3,8 +3,8 @@ import Image from 'next/image';
 
 export default async function Page() {
   const query = `
-query getAllProducts($first: Int = 250) {
-  products(first: $first) {
+query getAllProducts($first: Int = 20, $query: String) {
+  products(first: $first, query: $query) {
     pageInfo {
     hasNextPage
     hasPreviousPage
@@ -41,7 +41,7 @@ query getAllProducts($first: Int = 250) {
   }
 }
 `
-  const data = await shopifyFetch({ query });
+  const data = await shopifyFetch({ query, variables: { first: 20, query: "vendor:Renovation" } });
 
   const products = data.products.edges.map((edge: any) => edge.node);
 
