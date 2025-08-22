@@ -5,12 +5,9 @@ import Image from 'next/image';
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = await params;
-  console.log(slug);
-
 
   const data = await shopifyFetch<ProductByHandleResponse>({ query: getProductQuery, variables: { slug } });
   const product = data.productByHandle;
-  console.log(product)
 
   return (
     <div className="max-w-lg bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
