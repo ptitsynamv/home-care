@@ -12,7 +12,7 @@ export default function Home() {
   const [plans, setPosts] = useState<Plan[]>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState('My Modal');
-
+  const modalId = 'plan-callback-modal'
 
   useEffect(() => {
     fetch(API_URL + 'plan')
@@ -49,11 +49,11 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center" onClick={() => { setIsModalOpen(true); setModalTitle(plan.title) }} data-modal-target="crud-modal" data-modal-toggle="crud-modal">Choose plan</button>
+            <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center" onClick={() => { setIsModalOpen(true); setModalTitle(plan.title) }} data-modal-target={modalId} data-modal-toggle={modalId}>Choose plan</button>
           </div>
         ))}
       </div>
-      <Modal isOpen={isModalOpen} title={modalTitle} onClose={() => setIsModalOpen(false)}>
+      <Modal id={modalId} isOpen={isModalOpen} title={modalTitle} onClose={() => setIsModalOpen(false)}>
         <form className="p-4 md:p-5">
           <div className="grid gap-4 mb-4 grid-cols-2">
             <div className="col-span-2">
