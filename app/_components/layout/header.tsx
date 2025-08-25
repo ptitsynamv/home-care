@@ -1,6 +1,7 @@
 "use client";
 
 import useOpenClose from "@/app/_components/hooks/useOpenClose";
+import LocaleSwitcher from "@/app/_components/locale-switcher/locale-switcher";
 import ThemeButton from "@/app/_components/theme-button/theme-button";
 import { handleSignIn, handleSignOut } from "@/app/_lib/auth";
 import { useSession } from "next-auth/react";
@@ -39,6 +40,7 @@ export default function Header() {
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center space-x-4">
           <ThemeButton />
+          <LocaleSwitcher />
 
           {session ? (
             <button

@@ -31,13 +31,9 @@ export default async function RootLayout({ children, params: { locale } }: Props
   let messages;
   locale = locale || 'en';
 
-  console.log('RootLayout');
-
 
   try {
-    messages = (await import(`../messages/${locale}.json`)).default;
-    console.log({ messages });
-
+    messages = (await import(`../messages/${locale}.json`)).default
   } catch (error: unknown) {
     console.log({ error });
     // notFound();
