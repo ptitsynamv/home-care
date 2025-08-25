@@ -3,12 +3,15 @@
 import Modal from "@/app/_components/modal/modal";
 import { config } from "@/app/_lib/config";
 import { Plan, PlanResponse } from "@/app/_lib/home";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 const API_URL = config.apiUrl;
 
 
 export default function Home() {
+  const t = useTranslations();
+
   const [plans, setPosts] = useState<Plan[]>();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalTitle, setModalTitle] = useState('My Modal');
@@ -57,7 +60,7 @@ export default function Home() {
         <form className="p-4 md:p-5">
           <div className="grid gap-4 mb-4 grid-cols-2">
             <div className="col-span-2">
-              <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name:</label>
+              <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{t("HomePage.name")}:</label>
               <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Your name" />
             </div>
             <div className="col-span-2">

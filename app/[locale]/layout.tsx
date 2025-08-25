@@ -1,9 +1,10 @@
-import { Providers } from "@/app/providers";
+import { Providers } from "@/app/[locale]/providers";
 import { Locale } from "@/app/types";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { Geist, Geist_Mono, Inter } from "next/font/google";
-import "./globals.css";
+import { notFound } from "next/navigation";
+import "../globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,22 +28,18 @@ type Props = {
   params: { locale: Locale };
 };
 
-export default async function RootLayout({ children, params: { locale } }: Props) {
+export default async function LocaleLayout({ children, params: { locale } }: Props) {
   let messages;
-  locale = locale || 'en';
-
-  console.log('RootLayout');
-
+  console.log('LocaleLayout');
 
   try {
-    messages = (await import(`../messages/${locale}.json`)).default;
+    messages = (await import(`../../messages/${locale}.json`)).default;
     console.log({ messages });
 
   } catch (error: unknown) {
     console.log({ error });
-    // notFound();
+    notFound();
   }
-
 
   return (
     <html lang={locale} className={inter.className}>
@@ -54,5 +51,6 @@ export default async function RootLayout({ children, params: { locale } }: Props
         </NextIntlClientProvider>
       </body>
     </html>
+
   );
 }
