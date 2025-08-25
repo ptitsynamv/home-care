@@ -1,7 +1,7 @@
 import { Providers } from "@/app/providers";
-import { Locale } from "@/app/types";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
+import { getLocale } from 'next-intl/server';
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -24,13 +24,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 type Props = {
   children: React.ReactNode;
-  params: { locale: Locale };
 };
 
-export default async function RootLayout({ children, params: { locale } }: Props) {
+export default async function RootLayout({ children }: Props) {
   let messages;
-  locale = locale || 'en';
-
+  const locale = await getLocale();
 
   try {
     messages = (await import(`../messages/${locale}.json`)).default
@@ -38,7 +36,6 @@ export default async function RootLayout({ children, params: { locale } }: Props
     console.log({ error });
     // notFound();
   }
-
 
   return (
     <html lang={locale} className={inter.className}>
