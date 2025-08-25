@@ -1,0 +1,8 @@
+{
+  "HomePage": {
+    "name": "Name",
+    "phoneNumber": "Phone number",
+    "selectPhoneNumber": "Select a phone number that matches the format",
+    "calMeBack": "Call me back"
+  }
+}
