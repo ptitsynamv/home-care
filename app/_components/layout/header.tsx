@@ -3,7 +3,7 @@
 import useOpenClose from "@/app/_components/hooks/useOpenClose";
 import LocaleSwitcher from "@/app/_components/locale-switcher/locale-switcher";
 import ThemeButton from "@/app/_components/theme-button/theme-button";
-import { handleSignIn, handleSignOut } from "@/app/_lib/auth";
+import { handleSignIn, handleSignOut } from "@/app/_lib/services/auth";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 

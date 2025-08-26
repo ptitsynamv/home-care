@@ -1,7 +1,7 @@
 "use client";
 
-import { BlogPost, BlogResponse } from "@/app/_lib/blog";
-import { config } from "@/app/_lib/config";
+import { BlogPost, BlogResponse } from "@/app/_lib/interfaces/blog";
+import { config } from "@/app/_lib/interfaces/config";
 import { useEffect, useState } from "react";
 
 const API_URL = config.apiUrl;

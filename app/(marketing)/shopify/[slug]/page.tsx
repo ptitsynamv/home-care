@@ -1,6 +1,6 @@
-import { ProductByHandleResponse } from "@/app/_lib/product";
+import { ProductByHandleResponse } from "@/app/_lib/interfaces/product";
 import getProductQuery from "@/app/_lib/queries/get-product";
-import { shopifyFetch } from "@/app/_lib/shopify";
+import { shopifyFetch } from "@/app/_lib/services/shopify";
 import Image from 'next/image';
 
 export default async function Page({ params }: { params: { slug: string } }) {

@@ -1,6 +1,6 @@
-import { ProductsResponse } from "@/app/_lib/product";
+import { ProductsResponse } from "@/app/_lib/interfaces/product";
 import getAllProductsQuery from "@/app/_lib/queries/get-all-products";
-import { shopifyFetch } from "@/app/_lib/shopify";
+import { shopifyFetch } from "@/app/_lib/services/shopify";
 import Image from 'next/image';
 import Link from "next/link";
 

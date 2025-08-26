@@ -1,6 +1,6 @@
-import { BlogPost } from '@/app/_lib/blog';
-import { config } from '@/app/_lib/config';
-import { Plan } from '@/app/_lib/home';
+import { BlogPost } from '@/app/_lib/interfaces/blog';
+import { config } from '@/app/_lib/interfaces/config';
+import { Plan } from '@/app/_lib/interfaces/home';
 import { http, HttpResponse } from 'msw';
 
 const API_URL = config.apiUrl;
