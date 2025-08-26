@@ -24,5 +24,8 @@
   "ThemeButton": {
     "dark": "Темний",
     "light": "Світлий"
+  },
+  "Modal": {
+    "closeModal": "Закрити модальне вікно"
   }
 }

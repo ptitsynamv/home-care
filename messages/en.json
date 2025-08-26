@@ -24,5 +24,8 @@
   "ThemeButton": {
     "dark": "Dark",
     "light": "Light"
+  },
+  "Modal": {
+    "closeModal": "Close modal"
   }
 }
