@@ -4,5 +4,16 @@
     "phoneNumber": "Номер телефону",
     "selectPhoneNumber": "Виберіть номер телефону, який відповідає формату",
     "calMeBack": "Передзвоніть мені"
+  },
+  "Header": {
+    "welcome": "Ласкаво просимо",
+    "openMainMenu": "Відкрити головне меню",
+    "home": "Головна",
+    "about": "Про нас",
+    "blog": "Блог",
+    "shopify": "Shopify",
+    "logOut": "Вихід",
+    "logIn": "Вхід",
+    "closeMenu": "Звакрити меню"
   }
 }

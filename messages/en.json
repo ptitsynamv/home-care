@@ -4,5 +4,16 @@
     "phoneNumber": "Phone number",
     "selectPhoneNumber": "Select a phone number that matches the format",
     "calMeBack": "Call me back"
+  },
+  "Header": {
+    "welcome": "Welcome",
+    "openMainMenu": "Open main menu",
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog",
+    "shopify": "Shopify",
+    "logOut": "Log out",
+    "logIn": "Log in",
+    "closeMenu": "Close menu"
   }
 }
