@@ -6,7 +6,7 @@
     "calMeBack": "Передзвоніть мені"
   },
   "Header": {
-    "welcome": "Ласкаво просимо",
+    "welcome": "Привіт",
     "openMainMenu": "Відкрити головне меню",
     "home": "Головна",
     "about": "Про нас",
@@ -15,5 +15,14 @@
     "logOut": "Вихід",
     "logIn": "Вхід",
     "closeMenu": "Звакрити меню"
+  },
+  "LocaleSwitcher": {
+    "selectOption": "Виберіть опцію",
+    "english": "Англійська",
+    "ukrainian": "Українська"
+  },
+  "ThemeButton": {
+    "dark": "Темний",
+    "light": "Світлий"
   }
 }

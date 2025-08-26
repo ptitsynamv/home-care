@@ -15,5 +15,14 @@
     "logOut": "Log out",
     "logIn": "Log in",
     "closeMenu": "Close menu"
+  },
+  "LocaleSwitcher": {
+    "selectOption": "Select an option",
+    "english": "English",
+    "ukrainian": "Ukrainian"
+  },
+  "ThemeButton": {
+    "dark": "Dark",
+    "light": "Light"
   }
 }

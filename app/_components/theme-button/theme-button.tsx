@@ -1,9 +1,11 @@
 "use client";
 
 import { useTheme } from "@/app/_hooks/useTheme";
+import { useTranslations } from "next-intl";
 
 export default function ThemeButton() {
   const { isDarkMode, toggleTheme } = useTheme();
+  const t = useTranslations('ThemeButton');
 
   return (
     <button
@@ -22,7 +24,7 @@ export default function ThemeButton() {
               d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
             ></path>
           </svg>
-          Dark</>
+          {t("dark")}</>
       ) : (
         <>
           <svg
@@ -37,7 +39,7 @@ export default function ThemeButton() {
               clipRule="evenodd"
             ></path>
           </svg>
-          Light
+          {t("light")}
         </>
       )}
     </button >
