@@ -2,15 +2,20 @@
 
 import { BlogPost, BlogResponse } from "@/app/_lib/interfaces/blog";
 import { config } from "@/app/_lib/interfaces/config";
+import { useLocale } from 'next-intl';
 import { useEffect, useState } from "react";
 
 const API_URL = config.apiUrl;
 
-export default function Page() {
+export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>();
+  const locale = useLocale();
 
   useEffect(() => {
-    fetch(API_URL + 'blog')
+    const params = new URLSearchParams();
+    params.append('locale', locale);
+
+    fetch(`${API_URL}blog?${params.toString()}`)
       .then(response => response.json())
       .then((data: BlogResponse) => {
         if (!data || !data.posts) {
@@ -20,10 +25,8 @@ export default function Page() {
         if (data.posts) {
           setPosts(data.posts);
         }
-
-        console.log(data)
       });
-  }, []);
+  }, [locale]);
 
   return (
     <>

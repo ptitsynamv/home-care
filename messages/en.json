@@ -3,7 +3,9 @@
     "name": "Name",
     "phoneNumber": "Phone number",
     "selectPhoneNumber": "Select a phone number that matches the format",
-    "calMeBack": "Call me back"
+    "calMeBack": "Call me back",
+    "choosePlan": "Choose plan",
+    "yourName": "Your name"
   },
   "Header": {
     "welcome": "Welcome",
@@ -27,5 +29,9 @@
   },
   "Modal": {
     "closeModal": "Close modal"
+  },
+  "AboutPage": {
+    "title": "Complete Home Renovation & Interior Services You Can Trust",
+    "description": "We provide full-service home renovations from scratch, tailored to your style and needs. Our team handles electrical work, plumbing, wallpapering, tiling, and laminate flooring with expert precision. We also install stretch ceilings and create custom kitchens and built-in cabinets to fit any space. Every project is delivered with attention to detail, durability, and clean workmanship. Whether you're updating a single room or remodeling your entire home, we bring your vision to life — reliably and on time.."
   }
 }

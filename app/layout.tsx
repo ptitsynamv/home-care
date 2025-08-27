@@ -27,22 +27,14 @@ type Props = {
 };
 
 export default async function RootLayout({ children }: Props) {
-  let messages;
   const locale = await getLocale();
-
-  try {
-    messages = (await import(`../messages/${locale}.json`)).default
-  } catch (error: unknown) {
-    console.log({ error });
-    // notFound();
-  }
 
   return (
     <html lang={locale} className={inter.className}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white`}
       >
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={locale}>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
       </body>
