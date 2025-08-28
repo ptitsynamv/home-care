@@ -43,6 +43,7 @@ export default function Header() {
           <Link className="flex items-center gap-x-1 text-sm/6 font-semibold " href="/about">{t("about")}</Link>
           <Link className="flex items-center gap-x-1 text-sm/6 font-semibold " href="/blog">{t("blog")}</Link>
           <Link className="flex items-center gap-x-1 text-sm/6 font-semibold " href="/shopify">{t("shopify")}</Link>
+          <Link className="flex items-center gap-x-1 text-sm/6 font-semibold " href="/task">{t("task")}</Link>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center space-x-4">
           <ThemeButton />
@@ -103,6 +104,7 @@ export default function Header() {
                 <Link href="/about" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold  hover:bg-gray-700">{t("about")}</Link>
                 <Link href="/blog" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold  hover:bg-gray-700">{t("blog")}</Link>
                 <Link href="/shopify" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold  hover:bg-gray-700">{t("shopify")}</Link>
+                <Link href="/task" className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold  hover:bg-gray-700">{t("task")}</Link>
               </div>
               <div className="flex gap-4 py-6">
                 <ThemeButton />
