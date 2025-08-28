@@ -1,26 +1,27 @@
 import Task from "@/app/_components/task/Task";
-import { TaskData } from "@/app/_lib/interfaces/task";
+import { AppDispatch, RootState, updateTaskState } from "@/app/_lib/store/store";
+import { useDispatch, useSelector } from 'react-redux';
 
-type TaskListProps = {
-  /** Checks if it's in loading state */
-  loading?: boolean;
-  /** The list of tasks */
-  tasks: TaskData[];
-  /** Event to change the task to pinned */
-  onPinTask: (id: string) => void;
-  /** Event to change the task to archived */
-  onArchiveTask: (id: string) => void;
-};
-
-export default function TaskList({
-  loading = false,
-  tasks,
-  onPinTask,
-  onArchiveTask,
-}: TaskListProps) {
-  const events = {
-    onPinTask,
-    onArchiveTask,
+export default function TaskList() {
+  const tasks = useSelector((state: RootState) => {
+    const tasksInOrder = [
+      ...state.taskbox.tasks.filter((t) => t.state === 'TASK_PINNED'),
+      ...state.taskbox.tasks.filter((t) => t.state !== 'TASK_PINNED'),
+    ];
+    const filteredTasks = tasksInOrder.filter(
+      (t) => t.state === "TASK_INBOX" || t.state === 'TASK_PINNED'
+    );
+    return filteredTasks;
+  });
+  const { status } = useSelector((state: RootState) => state.taskbox);
+  const dispatch = useDispatch<AppDispatch>();
+  const pinTask = (value: string) => {
+    // We're dispatching the Pinned event back to our store
+    dispatch(updateTaskState({ id: value, newTaskState: 'TASK_PINNED' }));
+  };
+  const archiveTask = (value: string) => {
+    // We're dispatching the Archive event back to our store
+    dispatch(updateTaskState({ id: value, newTaskState: 'TASK_ARCHIVED' }));
   };
 
   const LoadingRow = (
@@ -32,7 +33,7 @@ export default function TaskList({
       </div>
     </div>
   );
-  if (loading) {
+  if (status === "loading") {
     return (
       <div data-testid="loading" key={"loading"}>
         {LoadingRow}
@@ -63,7 +64,12 @@ export default function TaskList({
     <div>
       {tasksInOrder.map((task) => (
         <div key={task.id} className="m-2">
-          <Task key={task.id} task={task} {...events} />
+          <Task
+            key={task.id}
+            task={task}
+            onPinTask={pinTask}
+            onArchiveTask={archiveTask}
+          />
         </div>
       ))}
     </div>
