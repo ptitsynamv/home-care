@@ -24,3 +24,4 @@ Use https://github.com/ptitsynamv/next-shopify-local
 ## Storybook
 
 Run `npm run storybook`
+Run `npm run test-storybook --watch` for tests
