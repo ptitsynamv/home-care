@@ -5,10 +5,10 @@ import TaskList from './TaskList';
 
 import * as TaskStories from '../task/Task.stories';
 
-import { Provider } from 'react-redux';
 
 import { TaskData } from '@/app/_lib/interfaces/task';
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
 
 // A super-simple mock of the state of the store
 export const MockedState = {

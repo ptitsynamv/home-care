@@ -1,5 +1,56 @@
 import { TaskData } from '@/app/_lib/interfaces/task';
 import { configureStore, createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { useQuery } from '@tanstack/react-query';
+import { create } from 'zustand';
+
+export type TaskLoadingStatus = 'idle' | 'loading' | 'failed' | 'succeeded';
+interface Store {
+  tasks: TaskData[];
+  status: TaskLoadingStatus;
+  error: string | null;
+  pinTask: (id: string) => void;
+  archiveTask: (id: string) => void;
+}
+
+export const useTaskStore = create<Store>()((set) => ({
+  tasks: [],
+  status: 'idle',
+  error: null,
+  pinTask: (id: string) =>
+    set((state) => ({
+      tasks: state.tasks.map((task) => (task.id === id ? { ...task, state: 'TASK_PINNED' } : task)),
+    })),
+  archiveTask: (id: string) =>
+    set((state) => ({
+      tasks: state.tasks.map((task) =>
+        task.id === id ? { ...task, state: 'TASK_ARCHIVED' } : task,
+      ),
+    })),
+}));
+
+export function useTasks() {
+  return useQuery<TaskData[]>({
+    queryKey: ['tasks'],
+    queryFn: async (): Promise<TaskData[]> => {
+      useTaskStore.setState({ tasks: [], status: 'loading', error: null });
+
+      const response = await fetch('https://jsonplaceholder.typicode.com/todos?userId=1');
+      if (!response.ok) {
+        useTaskStore.setState({ tasks: [], error: 'Failed to fetch data', status: 'failed' });
+        throw new Error('Failed to fetch products');
+      }
+      const data = await response.json();
+
+      const result = data.map((task: { id: number; title: string; completed: boolean }) => ({
+        id: `${task.id}`,
+        title: task.title,
+        state: task.completed ? 'TASK_ARCHIVED' : 'TASK_INBOX',
+      }));
+      useTaskStore.setState({ tasks: result, status: 'succeeded', error: null });
+      return result;
+    },
+  });
+}
 
 interface TaskBoxState {
   tasks: TaskData[];
@@ -7,20 +58,12 @@ interface TaskBoxState {
   error: string | null;
 }
 
-/*
- * The initial state of our store when the app loads.
- * Usually, you would fetch this from a server. Let's not worry about that now
- */
 const TaskBoxData: TaskBoxState = {
   tasks: [],
   status: 'idle',
   error: null,
 };
-/*
- * Creates an asyncThunk to fetch tasks from a remote endpoint.
- * You can read more about Redux Toolkit's thunks in the docs:
- * https://redux-toolkit.js.org/api/createAsyncThunk
- */
+
 export const fetchTasks = createAsyncThunk('taskbox/fetchTasks', async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/todos?userId=1');
   const data = await response.json();
@@ -32,11 +75,6 @@ export const fetchTasks = createAsyncThunk('taskbox/fetchTasks', async () => {
   return result;
 });
 
-/*
- * The store is created here.
- * You can read more about Redux Toolkit's slices in the docs:
- * https://redux-toolkit.js.org/api/createSlice
- */
 const TasksSlice = createSlice({
   name: 'taskbox',
   initialState: TaskBoxData,
@@ -51,10 +89,6 @@ const TasksSlice = createSlice({
       }
     },
   },
-  /*
-   * Extends the reducer for the async actions
-   * You can read more about it at https://redux-toolkit.js.org/api/createAsyncThunk
-   */
   extraReducers(builder) {
     builder
       .addCase(fetchTasks.pending, (state) => {
@@ -75,15 +109,6 @@ const TasksSlice = createSlice({
       });
   },
 });
-
-// The actions contained in the slice are exported for usage in our components
-export const { updateTaskState } = TasksSlice.actions;
-
-/*
- * Our app's store configuration goes here.
- * Read more about Redux's configureStore in the docs:
- * https://redux-toolkit.js.org/api/configureStore
- */
 const store = configureStore({
   reducer: {
     taskbox: TasksSlice.reducer,

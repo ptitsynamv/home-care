@@ -6,16 +6,23 @@ import {
   waitForElementToBeRemoved,
   within
 } from '@storybook/test';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { http, HttpResponse } from 'msw';
 import { Provider } from 'react-redux';
 import store from '../../_lib/store/store';
 import { MockedState } from '../task-list/TaskList.stories';
 import InboxScreen from './InboxScreen';
 
+const queryClient = new QueryClient();
+
 const meta = {
   component: InboxScreen,
   title: 'InboxScreen',
-  decorators: [(story) => <Provider store={store}>{story()}</Provider>],
+  decorators: [(story) =>
+    <QueryClientProvider client={queryClient}>
+      <Provider store={store}>{story()}</Provider>
+    </QueryClientProvider>
+  ],
   tags: ['autodocs'],
 } satisfies Meta<typeof InboxScreen>;
 

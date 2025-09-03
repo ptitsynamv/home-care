@@ -38,6 +38,6 @@ export default async function RootLayout({ children }: Props) {
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
       </body>
-    </html>
+    </html >
   );
 }

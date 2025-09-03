@@ -9,6 +9,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+Run `npm install  --legacy-peer-deps`
 Run the development server:
 
 Run `npm run dev`
